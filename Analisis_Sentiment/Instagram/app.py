@@ -58,13 +58,12 @@ with tab2:
     if file:
         df = pd.read_csv(file) if file.name.endswith(".csv") else pd.read_excel(file)
 
-        # tebak kolom komentar otomatis
         kandidat = ["content", "review", "comment", "komentar", "ulasan", "text", "teks"]
         kolom_lower = [c.lower() for c in df.columns]
         default = next((kolom_lower.index(k) for k in kandidat if k in kolom_lower), 0)
 
         kolom = st.selectbox("Pilih kolom komentar:", df.columns, index=default)
-        st.dataframe(df[[kolom]].head())   # cek isinya benar komentar, bukan nama
+        st.dataframe(df[[kolom]].head())   
 
         if st.button("Proses semua", type="primary"):
             texts = df[kolom].astype(str).tolist()
