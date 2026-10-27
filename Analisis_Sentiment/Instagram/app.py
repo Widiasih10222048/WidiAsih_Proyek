@@ -3,13 +3,16 @@ import joblib
 import pandas as pd
 import streamlit as st
 import saka
+from pathlib import Path
 
 st.set_page_config(page_title="Analisis Sentimen Komentar", page_icon="💬", layout="centered")
 
+BASE_DIR = Path(__file__).parent
+
 @st.cache_resource
 def load_model():
-    svm = joblib.load("svm_model.pkl")
-    tfidf = joblib.load("tfidf.pkl")
+    svm = joblib.load(BASE_DIR / "svm_model.pkl")
+    tfidf = joblib.load(BASE_DIR / "tfidf.pkl")
     return svm, tfidf
 
 svm, tfidf = load_model()
