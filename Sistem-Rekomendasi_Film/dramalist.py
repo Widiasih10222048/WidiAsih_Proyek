@@ -8,7 +8,7 @@ from rapidfuzz import fuzz, utils
 from engine import Filters, buat_mask, cari_judul, muat_paket, rekomendasi
 
 BASE = Path(__file__).parent
-PKL_PATH = BASE / "movie_marger.pkl"
+PKL_PATH = BASE / "movie_marger.joblib"
 LANGKAH = 12
 MAKS_REKOMENDASI = 150
 MAKS_DAFTAR = 300
@@ -31,8 +31,7 @@ def load_paket():
 
 if not PKL_PATH.exists():
     st.error(f"File **{PKL_PATH.name}** tidak ditemukan di folder `{BASE}`. "
-             "Jalankan notebook Dramalist.ipynb sampai sel *Simpan di Pickle*, lalu taruh "
-             "file `movie_marger.pkl` di folder yang sama dengan app.py.")
+             "Pastikan file `movie_marger.joblib` ada di folder yang sama dengan dramalist.py.")
     st.stop()
 
 paket = load_paket()

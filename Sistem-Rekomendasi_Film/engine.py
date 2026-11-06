@@ -1,4 +1,4 @@
-import pickle
+import joblib
 from dataclasses import dataclass, field
 from typing import Optional
 
@@ -20,8 +20,7 @@ class Filters:
 
 
 def muat_paket(path):
-    with open(path, "rb") as f:
-        paket = pickle.load(f)
+    paket = joblib.load(path)
     paket["titles"] = paket["data"]["title"].tolist()
     paket["titles_proc"] = [utils.default_process(t) for t in paket["titles"]]
     paket["genre_sets"] = [set(g) for g in paket["data"]["genres"]]
