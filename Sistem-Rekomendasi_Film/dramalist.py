@@ -2,12 +2,9 @@ import html
 import re
 from collections import Counter
 from pathlib import Path
-
 import pandas as pd
 import streamlit as st
-
 from rapidfuzz import fuzz, utils
-
 from engine import Filters, buat_mask, cari_judul, muat_paket, rekomendasi
 
 BASE = Path(__file__).parent
